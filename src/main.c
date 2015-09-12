@@ -39,10 +39,10 @@ static GBitmap *s_background_board;
 static BitmapLayer *s_board_layer;
 
 static ActionBarLayer *s_action_bar;
-static GBitmap *s_icon_plus, *s_icon_minus, *s_icon_runner;
+static GBitmap *s_icon_counterclockwise, *s_icon_clockwise, *s_icon_runner;
 
 static GBitmap *s_tile_character, *s_tile_zombie, *s_tile_wall;
-static BitmapLayer *s_character_layer, *s_zombie_layer;
+static BitmapLayer *s_character_layer, *s_zombie_layer, *s_wall_layer;
 
 static int s_num_drinks = NUM_DRINKS_DEFAULT;
 
@@ -68,24 +68,25 @@ static void click_config_provider(void *context) {
 
 static void create_bitmaps() {
   s_background_board = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND_BOARD);
-  /*s_background_board = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_TILE_WALL);*/
+
   s_tile_wall = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_TILE_WALL);
   s_tile_character = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_TILE_CHARACTER);
   s_tile_zombie = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_TILE_ZOMBIE);
 
-  s_icon_plus = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_PLUS);
-  s_icon_minus = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_MINUS);
+  s_icon_counterclockwise = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_COUNTERCLOCKWISE);
+  s_icon_clockwise = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_CLOCKWISE);
   s_icon_runner = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_RUNNER);
 }
 
 static void destroy_bitmaps() {
   gbitmap_destroy(s_background_board);
+
   gbitmap_destroy(s_tile_wall);
   gbitmap_destroy(s_tile_character);
   gbitmap_destroy(s_tile_zombie);
 
-  gbitmap_destroy(s_icon_plus);
-  gbitmap_destroy(s_icon_minus);
+  gbitmap_destroy(s_icon_counterclockwise);
+  gbitmap_destroy(s_icon_clockwise);
   gbitmap_destroy(s_icon_runner);
 }
 
