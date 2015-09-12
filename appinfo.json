@@ -1,0 +1,61 @@
+{
+  "uuid": "20c30673-37bc-4e9a-a01e-ac9d7dca977e",
+  "shortName": "theZone",
+  "longName": "theZone",
+  "companyName": "Timofey Tipishev",
+  "versionCode": 1,
+  "versionLabel": "1.0",
+  "watchapp": {
+    "watchface": false
+  },
+  "appKeys": {},
+  "resources": {
+    "media": [
+      {
+        "type": "png",
+        "name": "IMAGE_BACKGROUND_BOARD",
+        "file": "images/background_board.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_ACTION_ICON_PLUS",
+        "file": "images/action_icon_plus.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_ACTION_ICON_MINUS",
+        "file": "images/action_icon_minus.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_ACTION_ICON_CROSSHAIR",
+        "file": "images/action_icon_crosshair.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_ACTION_ICON_RUNNER",
+        "file": "images/action_icon_runner.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_TILE_CHARACTER",
+        "file": "images/tile_character.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_TILE_ZOMBIE",
+        "file": "images/tile_zombie.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_TILE_WALL",
+        "file": "images/tile_wall.png"
+      }
+    ]
+  },
+  "targetPlatforms": [
+    "aplite",
+    "basalt"
+  ],
+  "sdkVersion": "3"
+}
