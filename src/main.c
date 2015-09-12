@@ -15,8 +15,7 @@ static const uint32_t const MAP[] = {
     0,P,0,0,0,
     0,0,0,0,0,
     0,0,Z,0,0,
-    0,0,0,0,0
-};
+    0,0,0,0,0};
 
 // VIBE PATTERNS vibe-pause-vibe-...
 static const uint32_t const FOOTSTEPS[] = {50, 100, 50, 100, 50 };
@@ -94,45 +93,60 @@ static void create_action_bar(Window *window) {
   s_action_bar = action_bar_layer_create();
   action_bar_layer_add_to_window(s_action_bar, window);
   action_bar_layer_set_click_config_provider(s_action_bar, click_config_provider);
-  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_UP, s_icon_plus);
-  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_DOWN, s_icon_minus);
+  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_UP, s_icon_counterclockwise);
+  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_DOWN, s_icon_clockwise);
   action_bar_layer_set_icon(s_action_bar, BUTTON_ID_SELECT, s_icon_runner);
 }
 
+static GRect tile_to_global(const int tile_x, const int tile_y){  // TODO better name
+    GRect cursor;
+    cursor.origin.x = tile_x * TILE_SIZE;
+    cursor.origin.y = tile_y * TILE_SIZE;
+    cursor.size.w = cursor.size.h = TILE_SIZE;
+    return cursor;
+}
 
 static void main_window_load(Window *window) {
   create_bitmaps();
-  create_action_bar(window);
 
   Layer *window_layer = window_get_root_layer(window);
 
-  GRect layer_frame_description = layer_get_frame(window_layer);
-  layer_frame_description.origin.x = -10; // to account for action bar
+  GRect cursor = layer_get_frame(window_layer);
 
-  s_board_layer = bitmap_layer_create(layer_frame_description);
+  s_board_layer = bitmap_layer_create(cursor);
   bitmap_layer_set_bitmap(s_board_layer, s_background_board);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_board_layer));
 
 
-  layer_frame_description.origin.x -= 2*TILE_SIZE;
-  layer_frame_description.origin.y -= 2*TILE_SIZE;
-  s_character_layer = bitmap_layer_create(layer_frame_description);
+  s_character_layer = bitmap_layer_create(tile_to_global(1,3));
   bitmap_layer_set_bitmap(s_character_layer, s_tile_character);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_character_layer));
 
-
-  layer_frame_description.origin.x += 2*TILE_SIZE;
-  layer_frame_description.origin.y += 1*TILE_SIZE;
-  s_zombie_layer = bitmap_layer_create(layer_frame_description);
+  s_zombie_layer = bitmap_layer_create(tile_to_global(2,2));
   bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));
 
-  layer_frame_description.origin.x += TILE_SIZE;
-  layer_frame_description.origin.y += 2*TILE_SIZE;
-  s_zombie_layer = bitmap_layer_create(layer_frame_description);  // potential leak
+  s_zombie_layer = bitmap_layer_create(tile_to_global(2,4));  // potential leak
   bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));
-  /*bitmap_layer_set_bitmap(s_zombie_layer, s_tile_character);*/
+
+  s_zombie_layer = bitmap_layer_create(tile_to_global(2,3));  // potential leak
+  bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);
+  layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));
+
+  s_wall_layer = bitmap_layer_create(tile_to_global(1,4));
+  bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);
+  layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));
+
+  s_wall_layer = bitmap_layer_create(tile_to_global(0,4));
+  bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);
+  layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));
+
+  s_wall_layer = bitmap_layer_create(tile_to_global(1,5));
+  bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);
+  layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));
+
+  create_action_bar(window);
 }
 
 static void main_window_unload(Window *window) {
