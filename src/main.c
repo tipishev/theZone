@@ -6,6 +6,31 @@
 
 #define TILE_SIZE 24
 
+// MAP
+#define P 1
+#define Z 2
+static const uint32_t const MAP[] = {
+    0,0,0,0,0,
+    0,0,0,Z,0,
+    0,P,0,0,0,
+    0,0,0,0,0,
+    0,0,Z,0,0,
+    0,0,0,0,0
+};
+
+// VIBE PATTERNS vibe-pause-vibe-...
+static const uint32_t const FOOTSTEPS[] = {50, 100, 50, 100, 50 };
+static const uint32_t const DAMAGE[] = {200};
+
+static void vibe(const uint32_t const *pattern) {
+     VibePattern pat = {
+       .durations = pattern,
+         /*.num_segments = ARRAY_LENGTH(pattern),*/  // TODO determine pattern length
+         .num_segments = 5,
+         };
+         vibes_enqueue_custom_pattern(pat);
+}
+
 void window_set_fullscreen(Window * window, bool enabled);
 
 static Window *s_main_window;
@@ -30,13 +55,14 @@ static void decrement_click_handler(ClickRecognizerRef recognizer, void *context
   s_num_drinks--;
 }
 
-static void shoot_click_handler(ClickRecognizerRef recognizer, void *context) {
+static void run_click_handler(ClickRecognizerRef recognizer, void *context) {
+    vibe(FOOTSTEPS);
 }
 
 static void click_config_provider(void *context) {
   window_single_repeating_click_subscribe(BUTTON_ID_UP, REPEAT_INTERVAL_MS, increment_click_handler);
   window_single_repeating_click_subscribe(BUTTON_ID_DOWN, REPEAT_INTERVAL_MS, decrement_click_handler);
-  window_single_repeating_click_subscribe(BUTTON_ID_SELECT, REPEAT_INTERVAL_MS, shoot_click_handler);
+  window_single_repeating_click_subscribe(BUTTON_ID_SELECT, REPEAT_INTERVAL_MS, run_click_handler);
 }
 
 
@@ -102,10 +128,10 @@ static void main_window_load(Window *window) {
 
   layer_frame_description.origin.x += TILE_SIZE;
   layer_frame_description.origin.y += 2*TILE_SIZE;
-  s_zombie_layer = bitmap_layer_create(layer_frame_description);
+  s_zombie_layer = bitmap_layer_create(layer_frame_description);  // potential leak
   bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));
-
+  /*bitmap_layer_set_bitmap(s_zombie_layer, s_tile_character);*/
 }
 
 static void main_window_unload(Window *window) {
