@@ -1,5 +1,7 @@
 #include "pebble.h"
 
+#include "graphics.h"
+
 #define REPEAT_INTERVAL_MS 50
 #define NUM_DRINKS_PKEY 1 //special key for saving
 #define NUM_DRINKS_DEFAULT 0
@@ -119,30 +121,30 @@ static void main_window_load(Window *window) {
 
 
   s_character_layer = bitmap_layer_create(tile_to_global(1,3));
-  bitmap_layer_set_bitmap(s_character_layer, s_tile_character);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_character_layer));
+  bitmap_layer_set_bitmap(s_character_layer, s_tile_character);
 
   s_zombie_layer = bitmap_layer_create(tile_to_global(2,2));
   bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));
 
-  s_zombie_layer = bitmap_layer_create(tile_to_global(2,4));  // potential leak
+  s_zombie_layer = bitmap_layer_create(tile_to_global(2,4));  // leak
   bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));
 
-  s_zombie_layer = bitmap_layer_create(tile_to_global(2,3));  // potential leak
+  s_zombie_layer = bitmap_layer_create(tile_to_global(3,4));  // leak
   bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));
 
-  s_wall_layer = bitmap_layer_create(tile_to_global(1,4));
+  s_wall_layer = bitmap_layer_create(tile_to_global(1,4));  // leak
   bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));
 
-  s_wall_layer = bitmap_layer_create(tile_to_global(0,4));
+  s_wall_layer = bitmap_layer_create(tile_to_global(0,4));  // leak
   bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));
 
-  s_wall_layer = bitmap_layer_create(tile_to_global(1,5));
+  s_wall_layer = bitmap_layer_create(tile_to_global(1,5));  // leak
   bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));
 
