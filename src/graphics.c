@@ -101,9 +101,6 @@ void destroy_layers(){ // TODO better name
 void create_action_bar(Window *window) {
   s_action_bar = action_bar_layer_create();
   action_bar_layer_add_to_window(s_action_bar, window);
-  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_UP, s_icon_counterclockwise);
-  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_DOWN, s_icon_clockwise);
-  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_SELECT, s_icon_runner);
 }
 
 void switch_action_bar() {

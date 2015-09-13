@@ -1,5 +1,5 @@
 #include "controls.h"
-#include "graphics.h"
+#include "graphics.h" // leaky abstraction for demo purposes
 
 // VIBE PATTERNS vibe-pause-vibe-... TODO move away to vibe.{c,h}
 static const uint32_t const FOOTSTEPS[] = {50, 100, 50, 100, 50 };
