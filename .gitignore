@@ -1,3 +1,4 @@
 build
 .lock-waf_linux2_build
 **/*.sw*
+src/theZone.vim
