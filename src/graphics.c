@@ -9,7 +9,6 @@ static BitmapLayer *s_character_layer, *s_zombie_layer, *s_wall_layer;
 static ActionBarLayer *s_action_bar;
 static GBitmap *s_icon_counterclockwise, *s_icon_clockwise, *s_icon_runner;
 
-
 // helpers
 static GRect tile_to_global(const int tile_x, const int tile_y){  // TODO better name
     GRect cursor;
@@ -18,37 +17,6 @@ static GRect tile_to_global(const int tile_x, const int tile_y){  // TODO better
     cursor.size.w = cursor.size.h = TILE_SIZE;
     return cursor;
 }
-
-
-
-// VIBE PATTERNS vibe-pause-vibe-...
-static const uint32_t const FOOTSTEPS[] = {50, 100, 50, 100, 50 };
-static const uint32_t const DAMAGE[] = {200};
-
-static void vibe(const uint32_t const *pattern) {
-     VibePattern pat = {
-       .durations = pattern,
-         /*.num_segments = ARRAY_LENGTH(pattern),*/  // TODO determine pattern length
-         .num_segments = 5,
-         };
-         vibes_enqueue_custom_pattern(pat);
-}
-static void increment_click_handler(ClickRecognizerRef recognizer, void *context) {
-}
-
-static void decrement_click_handler(ClickRecognizerRef recognizer, void *context) {
-}
-
-static void run_click_handler(ClickRecognizerRef recognizer, void *context) {
-    vibe(FOOTSTEPS);
-}
-
-static void click_config_provider(void *context) {
-  window_single_repeating_click_subscribe(BUTTON_ID_UP, REPEAT_INTERVAL_MS, increment_click_handler);
-  window_single_repeating_click_subscribe(BUTTON_ID_DOWN, REPEAT_INTERVAL_MS, decrement_click_handler);
-  window_single_repeating_click_subscribe(BUTTON_ID_SELECT, REPEAT_INTERVAL_MS, run_click_handler);
-}
-
 
 void create_bitmaps() {
   s_background_board = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND_BOARD);
@@ -122,7 +90,7 @@ void destroy_layers(){ // TODO better name
 void create_action_bar(Window *window) {
   s_action_bar = action_bar_layer_create();
   action_bar_layer_add_to_window(s_action_bar, window);
-  action_bar_layer_set_click_config_provider(s_action_bar, click_config_provider);
+  /*action_bar_layer_set_click_config_provider(s_action_bar, click_config_provider);*/
   action_bar_layer_set_icon(s_action_bar, BUTTON_ID_UP, s_icon_counterclockwise);
   action_bar_layer_set_icon(s_action_bar, BUTTON_ID_DOWN, s_icon_clockwise);
   action_bar_layer_set_icon(s_action_bar, BUTTON_ID_SELECT, s_icon_runner);

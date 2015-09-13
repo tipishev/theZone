@@ -1,6 +1,6 @@
 #include "pebble.h"
-#include "config.h"
 
+#include "controls.h"
 #include "graphics.h"
 
 static Window *s_main_window;
