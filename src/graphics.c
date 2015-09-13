@@ -20,9 +20,6 @@ static GRect tile_to_global(const int tile_x, const int tile_y){  // TODO better
 }
 
 
-// TODO this should go to controls
-#define REPEAT_INTERVAL_MS 50
-
 
 // VIBE PATTERNS vibe-pause-vibe-...
 static const uint32_t const FOOTSTEPS[] = {50, 100, 50, 100, 50 };
@@ -113,8 +110,6 @@ void create_layers(Window *window){
   s_wall_layer = bitmap_layer_create(tile_to_global(1,5));  // leak
   bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));
-
-
 }
 
 void destroy_layers(){ // TODO better name

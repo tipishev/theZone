@@ -1,9 +1,7 @@
 #pragma once
 
 #include "pebble.h"
-
-// TODO move to global config
-#define TILE_SIZE 24
+#include "config.h"
 
 static GRect tile_to_global(const int tile_x, const int tile_y);
 
