@@ -6,6 +6,8 @@ static BitmapLayer *s_board_layer;
 static GBitmap *s_tile_character, *s_tile_zombie, *s_tile_wall;
 static BitmapLayer *s_character_layer, *s_zombie_layer, *s_wall_layer;
 
+static BitmapLayer* viewport[VIEWPORT_WIDTH][VIEWPORT_HEIGHT];
+
 static ActionBarLayer *s_action_bar;
 static GBitmap *s_icon_counterclockwise, *s_icon_clockwise, *s_icon_runner;
 static GBitmap *s_icon_previous_target, *s_icon_next_target, *s_icon_crosshair;
