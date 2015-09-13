@@ -12,6 +12,7 @@ void create_layers(Window *window);
 void destroy_layers();
 
 void create_action_bar(Window *window);
+ActionBarLayer* get_action_bar();  // TODO const?
+void switch_action_bar();
 void destroy_action_bar();
 
-ActionBarLayer *s_action_bar;

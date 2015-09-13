@@ -6,7 +6,11 @@ static BitmapLayer *s_board_layer;
 static GBitmap *s_tile_character, *s_tile_zombie, *s_tile_wall;
 static BitmapLayer *s_character_layer, *s_zombie_layer, *s_wall_layer;
 
+static ActionBarLayer *s_action_bar;
 static GBitmap *s_icon_counterclockwise, *s_icon_clockwise, *s_icon_runner;
+static GBitmap *s_icon_previous_target, *s_icon_next_target, *s_icon_crosshair;
+enum  action_bar_mode {MOVE, ATTACK};  // FIXME
+enum action_bar_mode mode = MOVE;  // FIXME
 
 // helpers
 static GRect tile_to_global(const int tile_x, const int tile_y){  // TODO better name
@@ -27,6 +31,10 @@ void create_bitmaps() {
   s_icon_counterclockwise = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_COUNTERCLOCKWISE);
   s_icon_clockwise = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_CLOCKWISE);
   s_icon_runner = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_RUNNER);
+
+  s_icon_next_target = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_NEXT_TARGET);
+  s_icon_previous_target = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_PREVIOUS_TARGET);
+  s_icon_crosshair = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_CROSSHAIR);
 }
 
 void destroy_bitmaps() {
@@ -39,6 +47,10 @@ void destroy_bitmaps() {
   gbitmap_destroy(s_icon_counterclockwise);
   gbitmap_destroy(s_icon_clockwise);
   gbitmap_destroy(s_icon_runner);
+
+  gbitmap_destroy(s_icon_previous_target);
+  gbitmap_destroy(s_icon_next_target);
+  gbitmap_destroy(s_icon_crosshair);
 }
 
 void create_layers(Window *window){
@@ -92,6 +104,25 @@ void create_action_bar(Window *window) {
   action_bar_layer_set_icon(s_action_bar, BUTTON_ID_UP, s_icon_counterclockwise);
   action_bar_layer_set_icon(s_action_bar, BUTTON_ID_DOWN, s_icon_clockwise);
   action_bar_layer_set_icon(s_action_bar, BUTTON_ID_SELECT, s_icon_runner);
+}
+
+void switch_action_bar() {
+  if (mode == MOVE) {
+  mode = ATTACK;
+  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_UP, s_icon_previous_target);
+  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_DOWN, s_icon_next_target);
+  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_SELECT, s_icon_crosshair);
+  }
+  else {
+  mode = MOVE;
+  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_UP, s_icon_counterclockwise);
+  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_DOWN, s_icon_clockwise);
+  action_bar_layer_set_icon(s_action_bar, BUTTON_ID_SELECT, s_icon_runner);
+  }
+}
+
+ActionBarLayer* get_action_bar() {
+    return s_action_bar;
 }
 
 void destroy_action_bar() {

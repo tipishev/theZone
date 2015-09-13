@@ -28,13 +28,23 @@
       },
       {
         "type": "png",
-        "name": "IMAGE_ACTION_ICON_CROSSHAIR",
-        "file": "images/action_icon_crosshair.png"
+        "name": "IMAGE_ACTION_ICON_RUNNER",
+        "file": "images/action_icon_runner.png"
       },
       {
         "type": "png",
-        "name": "IMAGE_ACTION_ICON_RUNNER",
-        "file": "images/action_icon_runner.png"
+        "name": "IMAGE_ACTION_ICON_PREVIOUS_TARGET",
+        "file": "images/action_icon_previous_target.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_ACTION_ICON_NEXT_TARGET",
+        "file": "images/action_icon_next_target.png"
+      },
+      {
+        "type": "png",
+        "name": "IMAGE_ACTION_ICON_CROSSHAIR",
+        "file": "images/action_icon_crosshair.png"
       },
       {
         "type": "png",
