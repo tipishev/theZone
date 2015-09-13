@@ -6,7 +6,6 @@ static BitmapLayer *s_board_layer;
 static GBitmap *s_tile_character, *s_tile_zombie, *s_tile_wall;
 static BitmapLayer *s_character_layer, *s_zombie_layer, *s_wall_layer;
 
-static ActionBarLayer *s_action_bar;
 static GBitmap *s_icon_counterclockwise, *s_icon_clockwise, *s_icon_runner;
 
 // helpers
@@ -90,7 +89,6 @@ void destroy_layers(){ // TODO better name
 void create_action_bar(Window *window) {
   s_action_bar = action_bar_layer_create();
   action_bar_layer_add_to_window(s_action_bar, window);
-  /*action_bar_layer_set_click_config_provider(s_action_bar, click_config_provider);*/
   action_bar_layer_set_icon(s_action_bar, BUTTON_ID_UP, s_icon_counterclockwise);
   action_bar_layer_set_icon(s_action_bar, BUTTON_ID_DOWN, s_icon_clockwise);
   action_bar_layer_set_icon(s_action_bar, BUTTON_ID_SELECT, s_icon_runner);

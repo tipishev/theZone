@@ -13,3 +13,5 @@ void destroy_layers();
 
 void create_action_bar(Window *window);
 void destroy_action_bar();
+
+ActionBarLayer *s_action_bar;

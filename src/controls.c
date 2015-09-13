@@ -1,6 +1,6 @@
 #include "controls.h"
 
-// VIBE PATTERNS vibe-pause-vibe-...
+// VIBE PATTERNS vibe-pause-vibe-... TODO move away to vibe.{c,h}
 static const uint32_t const FOOTSTEPS[] = {50, 100, 50, 100, 50 };
 static const uint32_t const DAMAGE[] = {200};
 
@@ -24,7 +24,7 @@ static void run_click_handler(ClickRecognizerRef recognizer, void *context) {
     vibe(FOOTSTEPS);
 }
 
-static void click_config_provider(void *context) {
+void click_config_provider(void *context) {
   window_single_repeating_click_subscribe(BUTTON_ID_UP, REPEAT_INTERVAL_MS, increment_click_handler);
   window_single_repeating_click_subscribe(BUTTON_ID_DOWN, REPEAT_INTERVAL_MS, decrement_click_handler);
   window_single_repeating_click_subscribe(BUTTON_ID_SELECT, REPEAT_INTERVAL_MS, run_click_handler);
