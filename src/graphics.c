@@ -21,7 +21,7 @@ static GRect tile_to_global(const int tile_x, const int tile_y){  // TODO better
     return cursor;
 }
 
-void create_bitmaps() {
+static void create_bitmaps() {
   s_background_board = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND_BOARD);
 
   s_tile_wall = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_TILE_WALL);
@@ -37,7 +37,7 @@ void create_bitmaps() {
   s_icon_crosshair = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_ACTION_ICON_CROSSHAIR);
 }
 
-void destroy_bitmaps() {
+static void destroy_bitmaps() {
   gbitmap_destroy(s_background_board);
 
   gbitmap_destroy(s_tile_wall);
@@ -53,7 +53,7 @@ void destroy_bitmaps() {
   gbitmap_destroy(s_icon_crosshair);
 }
 
-void create_layers(Window *window){
+static void create_layers(Window *window){
   Layer* window_layer = window_get_root_layer(window);
   GRect cursor = layer_get_frame(window_layer);
 
@@ -91,14 +91,14 @@ void create_layers(Window *window){
   layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));
 }
 
-void destroy_layers(){ // TODO better name
+static void destroy_layers(){ // TODO better name
   bitmap_layer_destroy(s_character_layer);
   bitmap_layer_destroy(s_zombie_layer);
   bitmap_layer_destroy(s_wall_layer);
 }
 
 
-void create_action_bar(Window *window) {
+static void create_action_bar(Window *window) {
   s_action_bar = action_bar_layer_create();
   action_bar_layer_add_to_window(s_action_bar, window);
 }
@@ -122,6 +122,19 @@ ActionBarLayer* get_action_bar() {
     return s_action_bar;
 }
 
-void destroy_action_bar() {
+static void destroy_action_bar() {
   action_bar_layer_destroy(s_action_bar);
+}
+
+
+void init_graphics(Window* window){
+    create_bitmaps();
+    create_layers(window);
+    create_action_bar(window);
+}
+
+void deinit_graphics(){
+    destroy_bitmaps();
+    destroy_layers();
+    destroy_action_bar();
 }
