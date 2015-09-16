@@ -4,7 +4,9 @@ static GBitmap *s_background_board;
 static BitmapLayer *s_board_layer;
 
 static GBitmap *s_tile_character, *s_tile_zombie, *s_tile_wall;
-static BitmapLayer *s_character_layer, *s_zombie_layer, *s_wall_layer;
+/*static BitmapLayer *s_character_layer, *s_zombie_layer, *s_wall_layer;*/
+static BitmapLayer* viewport[VIEWPORT_WIDTH][VIEWPORT_HEIGHT];
+
 
 static ActionBarLayer *s_action_bar;
 static GBitmap *s_icon_counterclockwise, *s_icon_clockwise, *s_icon_runner;
@@ -53,6 +55,13 @@ static void destroy_bitmaps() {
   gbitmap_destroy(s_icon_crosshair);
 }
 
+
+static void init_viewport(Window *window){
+}
+
+static void deinit_viewport(){
+}
+
 static void create_layers(Window *window){
   Layer* window_layer = window_get_root_layer(window);
   GRect cursor = layer_get_frame(window_layer);
@@ -62,33 +71,37 @@ static void create_layers(Window *window){
   layer_add_child(window_layer, bitmap_layer_get_layer(s_board_layer));
 
 
-  s_character_layer = bitmap_layer_create(tile_to_global(1,3));
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_character_layer));
-  bitmap_layer_set_bitmap(s_character_layer, s_tile_character);
+  /*// create a board FFS*/
 
-  s_zombie_layer = bitmap_layer_create(tile_to_global(2,2));
-  bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));
+  /*s_character_layer = bitmap_layer_create(tile_to_global(1,3));*/
+  /*layer_add_child(window_layer, bitmap_layer_get_layer(s_character_layer));*/
+  /*bitmap_layer_set_bitmap(s_character_layer, s_tile_character);*/
 
-  s_zombie_layer = bitmap_layer_create(tile_to_global(2,4));  // leak
-  bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));
+  /*s_zombie_layer = bitmap_layer_create(tile_to_global(2,2));*/
+  /*bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);*/
+  /*layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));*/
 
-  s_zombie_layer = bitmap_layer_create(tile_to_global(3,4));  // leak
-  bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));
+  /*s_zombie_layer = bitmap_layer_create(tile_to_global(2,4));  // leak*/
+  /*bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);*/
+  /*layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));*/
 
-  s_wall_layer = bitmap_layer_create(tile_to_global(1,4));  // leak
-  bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));
+  /*s_zombie_layer = bitmap_layer_create(tile_to_global(3,4));  // leak*/
+  /*bitmap_layer_set_bitmap(s_zombie_layer, s_tile_zombie);*/
+  /*layer_add_child(window_layer, bitmap_layer_get_layer(s_zombie_layer));*/
 
-  s_wall_layer = bitmap_layer_create(tile_to_global(0,4));  // leak
-  bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));
+  /*s_wall_layer = bitmap_layer_create(tile_to_global(1,4));  // leak*/
+  /*bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);*/
+  /*layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));*/
 
-  s_wall_layer = bitmap_layer_create(tile_to_global(1,5));  // leak
-  bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);
-  layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));
+  /*s_wall_layer = bitmap_layer_create(tile_to_global(0,4));  // leak*/
+  /*bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);*/
+  /*layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));*/
+
+  /*s_wall_layer = bitmap_layer_create(tile_to_global(1,5));  // leak*/
+  /*bitmap_layer_set_bitmap(s_wall_layer, s_tile_wall);*/
+  /*layer_add_child(window_layer, bitmap_layer_get_layer(s_wall_layer));*/
+
+  /*// EOFFS*/
 }
 
 static void destroy_layers(){ // TODO better name
@@ -129,12 +142,12 @@ static void destroy_action_bar() {
 
 void init_graphics(Window* window){
     create_bitmaps();
-    create_layers(window);
+    /*create_layers(window);*/
     create_action_bar(window);
 }
 
 void deinit_graphics(){
     destroy_bitmaps();
-    destroy_layers();
+    /*destroy_layers();*/
     destroy_action_bar();
 }
