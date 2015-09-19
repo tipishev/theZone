@@ -4,6 +4,8 @@
 void window_set_fullscreen(Window * window, bool enabled);
 
 // Model stuff
+#define WORLD_WIDTH 10
+#define WORLD_HEIGHT 10
 
 // View stuff
 #define TILE_SIZE 24
