@@ -1,16 +1,11 @@
 #include "controls.h"
 #include "vibe.h"
 #include "graphics.h" // leaky abstraction for demo purposes x 2
+#include "model.h" // leaky abstraction for demo purposes x 2
 
 static void increment_click_handler(ClickRecognizerRef recognizer, void *context) {
-  static char world_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH] = {
-    {'#','#','#','.','.'},
-    {'#','.','#','.','.'},
-    {'.','@','#','#','Z'},
-    {'.','.','Z','#','.'},
-    {'.','Z','.','.','.'},
-    {'.','.','.','.','.'}
-  };
+  static char world_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH];
+  give_world_piece(world_piece);
   fill_viewport(world_piece);
 }
 
