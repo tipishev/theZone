@@ -3,7 +3,7 @@
 static GBitmap *s_background_board;
 static BitmapLayer *s_board_layer;
 
-static GBitmap *s_tile_character, *s_tile_zombie, *s_tile_wall;
+static GBitmap *s_tile_blank, *s_tile_character, *s_tile_zombie, *s_tile_wall;
 
 static BitmapLayer *viewport[VIEWPORT_WIDTH][VIEWPORT_HEIGHT];
 
@@ -25,6 +25,7 @@ static GRect tile_to_global(const int tile_x, const int tile_y){  // TODO better
 static void create_bitmaps() {
   s_background_board = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_BACKGROUND_BOARD);
 
+  s_tile_blank = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_TILE_BLANK);
   s_tile_wall = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_TILE_WALL);
   s_tile_character = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_TILE_CHARACTER);
   s_tile_zombie = gbitmap_create_with_resource(RESOURCE_ID_IMAGE_TILE_ZOMBIE);
@@ -41,6 +42,7 @@ static void create_bitmaps() {
 static void destroy_bitmaps() {
   gbitmap_destroy(s_background_board);
 
+  gbitmap_destroy(s_tile_blank);
   gbitmap_destroy(s_tile_wall);
   gbitmap_destroy(s_tile_character);
   gbitmap_destroy(s_tile_zombie);
@@ -69,21 +71,21 @@ void fill_viewport(char world_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]) {
   for (int i=0; i<VIEWPORT_HEIGHT; ++i) {
     for (int j=0; j<VIEWPORT_WIDTH; ++j) {
       char tile_char = world_piece[i][j];
-      if (tile_char == '.') continue; 
-      else {
-        switch (tile_char) {
-          case '@':
-            cursor = s_tile_character;
-            break;
-          case 'Z':
-            cursor = s_tile_zombie;
-            break;
-          case '#':
-            cursor = s_tile_wall;
-            break;
-        }
-            bitmap_layer_set_bitmap(viewport[j][i], cursor);
+      switch (tile_char) {
+        case '.':
+          cursor = s_tile_blank;
+          break;
+        case '@':
+          cursor = s_tile_character;
+          break;
+        case 'Z':
+          cursor = s_tile_zombie;
+          break;
+        case '#':
+          cursor = s_tile_wall;
+          break;
       }
+          bitmap_layer_set_bitmap(viewport[j][i], cursor);
     }
   }
 }
