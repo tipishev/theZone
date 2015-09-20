@@ -1,16 +1,9 @@
 #include "model.h"
 
-char *MAP ="\
-0000000000\
-00Z000ZZ00\
-00Z00Z00Z0\
-00Z0000Z00\
-00Z000ZZZ0\
-0Z00000000\
-00Z000W0W0\
-0Z0000WWW0\
-00Z00000W0\
-0Z000000W0\
-";
+static char *world[WORLD_WIDTH][WORLD_HEIGHT];
 
-void load_map() {}
+void load_world() {
+
+
+
+}

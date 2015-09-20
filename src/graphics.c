@@ -120,7 +120,9 @@ void init_graphics(Window* window){
     create_viewport(window);
     bitmap_layer_set_bitmap(viewport[2][2], s_tile_character);
     bitmap_layer_set_bitmap(viewport[0][2], s_tile_wall);
-    bitmap_layer_set_bitmap(viewport[2][3], s_tile_zombie);
+    bitmap_layer_set_bitmap(viewport[1][2], s_tile_wall);
+    bitmap_layer_set_bitmap(viewport[4][2], s_tile_wall);
+    bitmap_layer_set_bitmap(viewport[0][0], s_tile_zombie);
     bitmap_layer_set_bitmap(viewport[2][1], s_tile_zombie);
     create_action_bar(window);
 }
