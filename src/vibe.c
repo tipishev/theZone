@@ -17,3 +17,8 @@ void vibe_damage() {
   static const uint32_t const DAMAGE[] = {200};
   vibe(DAMAGE, 1);
 }
+
+void vibe_explosion() {
+  static const uint32_t const EXPLOSION[] = {50, 100, 150};
+  vibe(EXPLOSION, 3);
+}

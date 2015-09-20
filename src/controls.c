@@ -26,6 +26,7 @@ static void run_click_handler(ClickRecognizerRef recognizer, void *context) {
 }
 
 static void switch_mode_click_handler(ClickRecognizerRef recognizer, void *context) {
+    vibe_explosion();
     switch_action_bar();
 }
 
