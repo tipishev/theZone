@@ -40,7 +40,7 @@ static void decrement_click_handler(ClickRecognizerRef recognizer, void *context
 }
 
 static void run_click_handler(ClickRecognizerRef recognizer, void *context) {
-    vibe(FOOTSTEPS);
+    vibe_footsteps();
 }
 
 static void switch_mode_click_handler(ClickRecognizerRef recognizer, void *context) {
