@@ -54,13 +54,36 @@ static void destroy_bitmaps() {
   gbitmap_destroy(s_icon_crosshair);
 }
 
-
 static void create_viewport(Window *window){
   Layer* window_layer = window_get_root_layer(window);
   for (int i=0; i<VIEWPORT_WIDTH; ++i) {
     for (int j=0; j<VIEWPORT_HEIGHT; ++j) {
       viewport[i][j] = bitmap_layer_create(tile_to_global(i, j));
       layer_add_child(window_layer, bitmap_layer_get_layer(viewport[i][j]));
+    }
+  }
+}
+
+void fill_viewport(char world_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]) {
+  static GBitmap *cursor;
+  for (int i=0; i<VIEWPORT_HEIGHT; ++i) {
+    for (int j=0; j<VIEWPORT_WIDTH; ++j) {
+      char tile_char = world_piece[i][j];
+      if (tile_char == '.') continue; 
+      else {
+        switch (tile_char) {
+          case '@':
+            cursor = s_tile_character;
+            break;
+          case 'Z':
+            cursor = s_tile_zombie;
+            break;
+          case '#':
+            cursor = s_tile_wall;
+            break;
+        }
+            bitmap_layer_set_bitmap(viewport[j][i], cursor);
+      }
     }
   }
 }
@@ -118,12 +141,6 @@ void init_graphics(Window* window){
     create_bitmaps();
     create_backdrop(window);
     create_viewport(window);
-    bitmap_layer_set_bitmap(viewport[2][2], s_tile_character);
-    bitmap_layer_set_bitmap(viewport[0][2], s_tile_wall);
-    bitmap_layer_set_bitmap(viewport[1][2], s_tile_wall);
-    bitmap_layer_set_bitmap(viewport[4][2], s_tile_wall);
-    bitmap_layer_set_bitmap(viewport[0][0], s_tile_zombie);
-    bitmap_layer_set_bitmap(viewport[2][1], s_tile_zombie);
     create_action_bar(window);
 }
 

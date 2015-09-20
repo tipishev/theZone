@@ -3,4 +3,4 @@
 #include "pebble.h"
 #include "config.h"
 
-void load_map();
+void load_world();

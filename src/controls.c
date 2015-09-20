@@ -1,5 +1,5 @@
 #include "controls.h"
-#include "graphics.h" // leaky abstraction for demo purposes
+#include "graphics.h" // leaky abstraction for demo purposes x 2
 
 // VIBE PATTERNS vibe-pause-vibe-... TODO move away to vibe.{c,h}
 static const uint32_t const FOOTSTEPS[] = {50, 100, 50, 100, 50 };
@@ -16,9 +16,27 @@ static void vibe(const uint32_t const *pattern) {
 
 
 static void increment_click_handler(ClickRecognizerRef recognizer, void *context) {
+  static char world_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH] = {
+    {'#','#','#','.','.'},
+    {'#','.','#','.','.'},
+    {'.','@','#','#','.'},
+    {'.','.','Z','#','.'},
+    {'.','Z','.','.','.'},
+    {'.','.','.','.','.'}
+  };
+  fill_viewport(world_piece);
 }
 
 static void decrement_click_handler(ClickRecognizerRef recognizer, void *context) {
+  static char world_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH] = {
+    {'#','#','#','.','.'},
+    {'#','@','#','.','.'},
+    {'.','.','#','#','.'},
+    {'.','.','.','#','.'},
+    {'.','.','.','Z','.'},
+    {'Z','.','.','.','.'}
+  };
+  fill_viewport(world_piece);
 }
 
 static void run_click_handler(ClickRecognizerRef recognizer, void *context) {
