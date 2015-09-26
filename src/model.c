@@ -23,14 +23,12 @@ void load_world() {
   // TODO read *a* world aka level from raw resources
 }
 
-void give_world_piece(char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]){
-  for (int i=0; i<VIEWPORT_WIDTH; ++i) {
-    for (int j=0; j<VIEWPORT_HEIGHT; ++j) {
-      if (i == 0) destination[i][j] = '#';
-      else if (i == 1) destination[i][j] = 'Z';
-      else if (i == 3) destination[i][j] = '#';
-      else if (i == 4) destination[i][j] = '@';
-      else destination[i][j] = '.';
+void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]){
+  GPoint upper_left;
+  upper_left = position; // FIXME with max and min
+  for (int i=upper_left.x; i<VIEWPORT_WIDTH; ++i) {
+    for (int j=upper_left.y; j<VIEWPORT_HEIGHT; ++j) {
+      destination[i][j] = world[i][j];
     }
   }
 }
