@@ -14,12 +14,12 @@ enum  action_bar_mode {MOVE, ATTACK};  // FIXME
 enum action_bar_mode mode = MOVE;  // FIXME
 
 // helpers
-static GRect tile_to_global(const int tile_x, const int tile_y){  // TODO better name
-    GRect cursor;
-    cursor.origin.x = tile_x * TILE_SIZE;
-    cursor.origin.y = tile_y * TILE_SIZE;
-    cursor.size.w = cursor.size.h = TILE_SIZE;
-    return cursor;
+static GRect get_frame(GPoint tile){
+    GRect frame;
+    frame.origin.x = tile.x * TILE_SIZE;
+    frame.origin.y = tile.y * TILE_SIZE;
+    frame.size.w = frame.size.h = TILE_SIZE;
+    return frame;
 }
 
 static void create_bitmaps() {
@@ -60,7 +60,8 @@ static void create_viewport(Window *window){
   Layer* window_layer = window_get_root_layer(window);
   for (int i=0; i<VIEWPORT_WIDTH; ++i) {
     for (int j=0; j<VIEWPORT_HEIGHT; ++j) {
-      viewport[i][j] = bitmap_layer_create(tile_to_global(i, j));
+      GPoint tile = GPoint(i, j);
+      viewport[i][j] = bitmap_layer_create(get_frame(tile));
       layer_add_child(window_layer, bitmap_layer_get_layer(viewport[i][j]));
     }
   }
