@@ -46,6 +46,8 @@ GPoint get_player_position() {
 void set_player_position(GPoint new_position) {
   new_position.x = min(max(new_position.x, 0), WORLD_WIDTH - 1);
   new_position.y = min(max(new_position.y, 0), WORLD_HEIGHT - 1);
+  char to_crush = world[new_position.y][new_position.x];
+  if (to_crush == 'Z') vibe_explosion();
   world[player_position.y][player_position.x] = '.';
   player_position = new_position;
   world[player_position.y][player_position.x] = '@';

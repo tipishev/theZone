@@ -4,6 +4,7 @@
 #include "config.h"
 #include "graphics.h"
 #include "math.h"
+#include "vibe.h"
 
 void load_world();
 
