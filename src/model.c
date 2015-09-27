@@ -28,16 +28,6 @@ void load_world() {
   // TODO read *a* world aka level from raw resources
 }
 
-void init_player() {
-  player.health = 10;
-  player.position.x = 4;
-  player.position.y = 14;
-  player.direction = N;
-}
-
-void deinit_player() {
-}
-
 void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]) {
   GPoint upper_left;
   upper_left.x = min(max(position.x, 0), WORLD_WIDTH - VIEWPORT_WIDTH);
@@ -47,6 +37,16 @@ void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPOR
       destination[i][j] = world[upper_left.y + i][upper_left.x + j];
     }
   }
+}
+
+void init_player() {
+  player.health = 10;
+  player.position.x = 4;
+  player.position.y = 14;
+  player.direction = N;
+}
+
+void deinit_player() {
 }
 
 GPoint get_player_position() {
@@ -69,11 +69,27 @@ void set_player_position(GPoint new_position) {
 
   static char s_buffer[32];
   snprintf(s_buffer, sizeof(s_buffer),
-           "@(%d, %d) #: %d dir: %d",
+           "@(%d, %d) Z:%d dir:%d",
            player.position.x, player.position.y,
            zombies_count,
            player.direction
   );
-
   set_status_text(s_buffer);
 }
+
+/*void get_neighbors(GPoint tile, char destination[8]) {*/
+/*  [>destination[E] = (tile.x < WORLD_EAST_EDGE) ? world[tile.y][tile.x + 1] : '~'; <]*/
+/*  [>destination[N] = (tile.y > WORLD_NORTH_EDGE) ? world[tile.y - 1][tile.x] : '~'; <]*/
+/*  [>destination[W] = (tile.x > WORLD_WEST_EDGE) ? world[tile.y][tile.x - 1] : '~'; <]*/
+/*  [>destination[S] = (tile.y < WORLD_SOUTH_EDGE) ? world[tile.y + 1][tile.x] : '~'; <]*/
+
+/*  [>destination[NE] = ((tile.x < WORLD_EAST_EDGE) && (tile.y < WORLD_NORTH_EDGE)) ? world[tile.y-1][tile.x + 1] : '~'; <]*/
+/*  [>destination[NW] = ((tile.x > WORLD_WEST_EDGE) && (tile.y < WORLD_NORTH_EDGE)) ? world[tile.y-1][tile.x - 1] : '~'; <]*/
+/*  [>destination[SW] = ((tile.x > WORLD_WEST_EDGE) && (tile.y < WORLD_NORTH_EDGE)) ? world[tile.y-1][tile.x - 1] : '~'; <]*/
+/*  [>destination[NE] = ((tile.x < WORLD_EAST_EDGE) && (tile.y < WORLD_NORTH_EDGE)) ? world[tile.y-1][tile.x + 1] : '~'; <]*/
+/*}*/
+
+/*char get_available_directions() {*/
+/*  return '0';*/
+/*}*/
+

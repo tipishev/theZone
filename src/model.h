@@ -6,6 +6,11 @@
 #include "math.h"
 #include "vibe.h"
 
+#define WORLD_EAST_EDGE WORLD_WIDTH - 1
+#define WORLD_NORTH_EDGE 0
+#define WORLD_WEST_EDGE 0
+#define WORLD_SOUTH_EDGE WORLD_HEIGHT - 1
+
 typedef enum { E = 0, NE = 1, N = 2, NW = 3,
                W = 4, SW = 5, S = 6, SE = 7
 } Direction;
