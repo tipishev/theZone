@@ -1,6 +1,6 @@
 #pragma once
 
-#include "pebble.h"
+#include <pebble.h>
 #include "config.h"
 
 void vibe_footsteps();
