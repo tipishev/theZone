@@ -10,3 +10,5 @@ ActionBarLayer* get_action_bar();  // TODO const?
 void switch_action_bar();  // TODO make it smarter
 
 void fill_viewport(char world_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]);
+
+void set_status_text(char *text);

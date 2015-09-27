@@ -15,13 +15,17 @@ static char world[WORLD_WIDTH][WORLD_HEIGHT] = {
   {'.','.','.','#','.','.','.','.','.','.','.','#','.','.','.','.'}, // A
   {'.','.','.','#','#','#','#','.','.','#','.','.','.','.','.','.'}, // B
   {'.','.','.','#','.','.','#','.','.','#','.','.','#','Z','.','.'}, // C
-  {'.','.','.','#','@','.','#','#','.','#','.','.','#','.','.','.'}, // D
+  {'.','.','.','#','.','.','#','#','.','#','.','.','#','.','.','.'}, // D
   {'.','.','.','#','.','.','.','.','.','#','.','.','#','.','Z','.'}, // E
   {'Z','.','.','#','#','#','#','#','#','#','.','.','#','.','.','.'}  // F
 };
 
+GPoint player_position;
+
 void load_world() {
   // TODO read *a* world aka level from raw resources
+  player_position.x = 0;
+  player_position.y = 0;
 }
 
 void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]){
@@ -33,4 +37,20 @@ void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPOR
       destination[i][j] = world[upper_left.y + i][upper_left.x + j];
     }
   }
+}
+
+GPoint get_player_position() {
+  return player_position;
+}
+
+void set_player_position(GPoint new_position) {
+  new_position.x = min(max(new_position.x, 0), WORLD_WIDTH - 1);
+  new_position.y = min(max(new_position.y, 0), WORLD_HEIGHT - 1);
+  world[player_position.y][player_position.x] = '.';
+  player_position = new_position;
+  world[player_position.y][player_position.x] = '@';
+
+  static char s_buffer[32];
+  snprintf(s_buffer, sizeof(s_buffer), "%d, %d", player_position.x, player_position.y);
+  set_status_text(s_buffer);
 }

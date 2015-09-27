@@ -13,6 +13,8 @@ static GBitmap *s_icon_previous_target, *s_icon_next_target, *s_icon_crosshair;
 enum  action_bar_mode {MOVE, ATTACK};  // FIXME
 enum action_bar_mode mode = MOVE;  // FIXME
 
+static TextLayer *s_status_text_layer;
+
 // helpers
 static GRect get_frame(GPoint tile){
     GRect frame;
@@ -101,9 +103,9 @@ static void destroy_viewport(){
 
 static void create_backdrop(Window *window){
   Layer* window_layer = window_get_root_layer(window);
-  GRect cursor = layer_get_frame(window_layer);
+  GRect frame = layer_get_frame(window_layer);
 
-  s_board_layer = bitmap_layer_create(cursor);
+  s_board_layer = bitmap_layer_create(frame);
   bitmap_layer_set_bitmap(s_board_layer, s_background_board);
   layer_add_child(window_layer, bitmap_layer_get_layer(s_board_layer));
 }
@@ -140,11 +142,28 @@ static void destroy_action_bar() {
   action_bar_layer_destroy(s_action_bar);
 }
 
+static void create_status_text(Window *window) {
+  s_status_text_layer = text_layer_create(GRect(49, 146, 117, 165));
+  text_layer_set_background_color(s_status_text_layer, GColorClear);
+  text_layer_set_text_color(s_status_text_layer, GColorBlack);
+  layer_add_child(window_get_root_layer(window), text_layer_get_layer(s_status_text_layer));
+}
+
+void set_status_text(char *text) {
+  text_layer_set_text(s_status_text_layer, text);
+}
+
+static void destroy_status_text() {
+  text_layer_destroy(s_status_text_layer);
+}
+
 void init_graphics(Window* window){
     create_bitmaps();
     create_backdrop(window);
     create_viewport(window);
     create_action_bar(window);
+    create_status_text(window);
+    set_status_text("OLOLO");
 }
 
 void deinit_graphics(){
@@ -152,4 +171,5 @@ void deinit_graphics(){
     destroy_backdrop();
     destroy_viewport();
     destroy_action_bar();
+    destroy_status_text();
 }

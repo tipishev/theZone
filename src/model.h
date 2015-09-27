@@ -2,6 +2,7 @@
 
 #include "pebble.h"
 #include "config.h"
+#include "graphics.h"
 #include "math.h"
 
 void load_world();
@@ -14,3 +15,6 @@ void load_world();
  * tile if it is witnin the world boundaries.
  * */
 void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]);
+
+GPoint get_player_position();
+void set_player_position(GPoint new_position);
