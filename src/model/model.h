@@ -4,7 +4,7 @@
 #include "config.h"
 #include "view/graphics.h"
 #include "view/vibe.h"
-#include "math.h"
+#include "utils/math.h"
 
 #define WORLD_EAST_EDGE WORLD_WIDTH - 1
 #define WORLD_NORTH_EDGE 0
