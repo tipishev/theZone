@@ -25,8 +25,14 @@ int zombies_count = 7;
 
 void load_world() {
   // TODO read *a* world aka level from raw resources
+}
+
+void init_player() {
   player_position.x = 4;
   player_position.y = 14;
+}
+
+void deinit_player() {
 }
 
 void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]){

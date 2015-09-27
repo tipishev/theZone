@@ -17,5 +17,7 @@ void load_world();
  * */
 void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]);
 
+void init_player();
 GPoint get_player_position();
 void set_player_position(GPoint new_position);
+void deinit_player();

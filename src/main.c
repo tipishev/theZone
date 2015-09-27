@@ -8,11 +8,13 @@ static Window *s_main_window;
 
 static void main_window_load(Window *window) {
   load_world();
+  init_player();
   init_graphics(window);
   action_bar_layer_set_click_config_provider(get_action_bar(), click_config_provider);
 }
 
 static void main_window_unload(Window *window) {
+  deinit_player();
   deinit_graphics();
 }
 
