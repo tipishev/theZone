@@ -164,7 +164,7 @@ void init_graphics(Window* window){
     create_viewport(window);
     create_action_bar(window);
     create_status_text(window);
-    set_status_text("Dios mio la texta bella");
+    set_status_text("abcdefghijklmnopq");
 }
 
 void deinit_graphics(){
