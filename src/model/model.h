@@ -6,11 +6,6 @@
 #include "view/vibe.h"
 #include "utils/math.h"
 
-#define WORLD_EAST_EDGE WORLD_WIDTH - 1
-#define WORLD_NORTH_EDGE 0
-#define WORLD_WEST_EDGE 0
-#define WORLD_SOUTH_EDGE WORLD_HEIGHT - 1
-
 typedef enum { E = 0, NE = 1, N = 2, NW = 3,
                W = 4, SW = 5, S = 6, SE = 7
 } Direction;
@@ -22,6 +17,7 @@ typedef struct {
   Direction direction;
 } Player;
 
+/* map */
 void load_world();
 
 /* Copy a piece of the global map to the `destination`.
@@ -33,6 +29,7 @@ void load_world();
  * */
 void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]);
 
+/* player */
 void init_player();
 GPoint get_player_position();
 void set_player_position(GPoint new_position);
