@@ -10,16 +10,6 @@ static void main_window_load(Window *window) {
   load_world();
   init_graphics(window);
   action_bar_layer_set_click_config_provider(get_action_bar(), click_config_provider);
-
-  static char world_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH] = {
-    {'#','#','#','.','.'},
-    {'#','.','#','.','.'},
-    {'.','@','#','#','.'},
-    {'.','.','.','#','.'},
-    {'.','.','.','Z','.'},
-    {'Z','.','.','.','.'}
-  };
-  fill_viewport(world_piece);
 }
 
 static void main_window_unload(Window *window) {
