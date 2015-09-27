@@ -143,7 +143,7 @@ static void destroy_action_bar() {
 }
 
 static void create_status_text(Window *window) {
-  s_status_text_layer = text_layer_create(GRect(47, 140, 78, 165));
+  s_status_text_layer = text_layer_create(STATUS_TEXT_POSITION);
   text_layer_set_background_color(s_status_text_layer, GColorClear);
   text_layer_set_text_color(s_status_text_layer, GColorBlack);
   text_layer_set_font(s_status_text_layer, fonts_get_system_font(FONT_KEY_GOTHIC_14_BOLD));
