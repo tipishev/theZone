@@ -26,7 +26,8 @@ void load_world() {
 
 void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]){
   GPoint upper_left;
-  upper_left = position; // FIXME with max and min*/
+  upper_left.x = min(max(position.x, 0), WORLD_WIDTH - VIEWPORT_WIDTH);
+  upper_left.y = min(max(position.y, 0), WORLD_HEIGHT - VIEWPORT_HEIGHT);
   for (int i=0; i<VIEWPORT_HEIGHT; ++i) {
     for (int j=0; j<VIEWPORT_WIDTH; ++j) {
       destination[i][j] = world[upper_left.y + i][upper_left.x + j];
