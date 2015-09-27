@@ -1,7 +1,4 @@
 #include "controls.h"
-#include "vibe.h"
-#include "graphics.h" // leaky abstraction for demo purposes x 2
-#include "model.h" // leaky abstraction for demo purposes x 2
 
 static GPoint position;
 static char world_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH];
