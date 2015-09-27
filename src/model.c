@@ -20,22 +20,25 @@ static char world[WORLD_WIDTH][WORLD_HEIGHT] = {
   {'Z','.','.','#','#','#','#','#','#','#','.','.','#','.','.','.'}  // F
 };
 
-GPoint player_position;
-int zombies_count = 7;
+Player player;
+
+int zombies_count = 7; // FIXME remove when you've had enough fun with it
 
 void load_world() {
   // TODO read *a* world aka level from raw resources
 }
 
 void init_player() {
-  player_position.x = 4;
-  player_position.y = 14;
+  player.health = 10;
+  player.position.x = 4;
+  player.position.y = 14;
+  player.direction = N;
 }
 
 void deinit_player() {
 }
 
-void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]){
+void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]) {
   GPoint upper_left;
   upper_left.x = min(max(position.x, 0), WORLD_WIDTH - VIEWPORT_WIDTH);
   upper_left.y = min(max(position.y, 0), WORLD_HEIGHT - VIEWPORT_HEIGHT);
@@ -47,7 +50,7 @@ void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPOR
 }
 
 GPoint get_player_position() {
-  return player_position;
+  return player.position;
 }
 
 void set_player_position(GPoint new_position) {
@@ -59,12 +62,18 @@ void set_player_position(GPoint new_position) {
       --zombies_count;
       vibe_explosion();
     }
-    world[player_position.y][player_position.x] = '.';
-    player_position = new_position;
-    world[player_position.y][player_position.x] = '@';
+    world[player.position.y][player.position.x] = '.';
+    player.position = new_position;
+    world[player.position.y][player.position.x] = '@';
   }
 
   static char s_buffer[32];
-  snprintf(s_buffer, sizeof(s_buffer), "(%d, %d) %d", player_position.x, player_position.y, zombies_count);
+  snprintf(s_buffer, sizeof(s_buffer),
+           "@(%d, %d) #: %d dir: %d",
+           player.position.x, player.position.y,
+           zombies_count,
+           player.direction
+  );
+
   set_status_text(s_buffer);
 }

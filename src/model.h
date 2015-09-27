@@ -6,14 +6,16 @@
 #include "math.h"
 #include "vibe.h"
 
-enum Direction {
-  E = 0, NE = 1,
-  N = 2, NW = 3,
-  W = 4, SW = 5,
-  S = 6, SE = 7
-};
+typedef enum { E = 0, NE = 1, N = 2, NW = 3,
+               W = 4, SW = 5, S = 6, SE = 7
+} Direction;
 
-
+typedef struct {
+  int health;
+  int ammo;
+  GPoint position;
+  Direction direction;
+} Player;
 
 void load_world();
 
