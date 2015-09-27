@@ -2,6 +2,7 @@
 
 #include "pebble.h"
 #include "config.h"
+#include "math.h"
 
 void load_world();
 

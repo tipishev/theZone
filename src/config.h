@@ -14,15 +14,3 @@ void window_set_fullscreen(Window * window, bool enabled);
 
 // Control stuff
 #define REPEAT_INTERVAL_MS 50
-
-
-// some silly macros TODO move to a separated header file
-#define max(a, b) \
-({ __typeof__ (a) _a = (a); \
-__typeof__ (b) _b = (b); \
-_a > _b ? _a : _b; })
-
-#define min(a, b) \
-({ __typeof__ (a) _a = (a); \
-__typeof__ (b) _b = (b); \
-_a < _b ? _a : _b; })
