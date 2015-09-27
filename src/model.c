@@ -21,6 +21,7 @@ static char world[WORLD_WIDTH][WORLD_HEIGHT] = {
 };
 
 GPoint player_position;
+int zombies_count = 7;
 
 void load_world() {
   // TODO read *a* world aka level from raw resources
@@ -44,15 +45,20 @@ GPoint get_player_position() {
 }
 
 void set_player_position(GPoint new_position) {
-  new_position.x = min(max(new_position.x, 0), WORLD_WIDTH - 1);
-  new_position.y = min(max(new_position.y, 0), WORLD_HEIGHT - 1);
   char to_crush = world[new_position.y][new_position.x];
-  if (to_crush == 'Z') vibe_explosion();
-  world[player_position.y][player_position.x] = '.';
-  player_position = new_position;
-  world[player_position.y][player_position.x] = '@';
+  if (to_crush != '#') {
+    new_position.x = min(max(new_position.x, 0), WORLD_WIDTH - 1);
+    new_position.y = min(max(new_position.y, 0), WORLD_HEIGHT - 1);
+    if (to_crush == 'Z') {
+      --zombies_count;
+      vibe_explosion();
+    }
+    world[player_position.y][player_position.x] = '.';
+    player_position = new_position;
+    world[player_position.y][player_position.x] = '@';
+  }
 
   static char s_buffer[32];
-  snprintf(s_buffer, sizeof(s_buffer), "%d, %d", player_position.x, player_position.y);
+  snprintf(s_buffer, sizeof(s_buffer), "(%d, %d) %d", player_position.x, player_position.y, zombies_count);
   set_status_text(s_buffer);
 }
