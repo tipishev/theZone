@@ -2,9 +2,9 @@
 
 #include <pebble.h>
 #include "config.h"
-#include "graphics.h"
+#include "view/graphics.h"
+#include "view/vibe.h"
 #include "math.h"
-#include "vibe.h"
 
 #define WORLD_EAST_EDGE WORLD_WIDTH - 1
 #define WORLD_NORTH_EDGE 0

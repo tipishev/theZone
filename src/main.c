@@ -1,8 +1,8 @@
 #include "pebble.h"
 
-#include "controls.h"
-#include "graphics.h"
-#include "model.h"
+#include "control/controls.h"
+#include "view/graphics.h"
+#include "model/model.h"
 
 static Window *s_main_window;
 
