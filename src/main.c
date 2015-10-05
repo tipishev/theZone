@@ -2,7 +2,7 @@
 
 #include "control/controls.h"
 #include "view/graphics.h"
-#include "model/model.h"
+#include "model/player.h"
 
 static Window *s_main_window;
 

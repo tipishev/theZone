@@ -21,8 +21,6 @@ char world[WORLD_WIDTH][WORLD_HEIGHT] = {
 };
 
 
-
-
 void load_world() {
   // TODO read *a* world aka level from raw resources
 }
@@ -36,6 +34,14 @@ void give_world_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPOR
       destination[i][j] = world[upper_left.y + i][upper_left.x + j];
     }
   }
+}
+
+char get_world_at(GPoint position) {
+    return world[position.y][position.x];
+}
+
+void set_world_at(GPoint position, char tile) {
+    world[position.y][position.x] = tile;
 }
 
 /*void get_neighbors(GPoint tile, char destination[8]) {*/
