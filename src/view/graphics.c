@@ -69,11 +69,11 @@ static void create_viewport(Window *window){
   }
 }
 
-void fill_viewport(char world_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]) {
+void fill_viewport(char map_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]) {
   static GBitmap *cursor;
   for (int i=0; i<VIEWPORT_HEIGHT; ++i) {
     for (int j=0; j<VIEWPORT_WIDTH; ++j) {
-      char tile_char = world_piece[i][j];
+      char tile_char = map_piece[i][j];
       switch (tile_char) {
         case '.':
           cursor = s_tile_blank;

@@ -1,7 +1,7 @@
 #include "controls.h"
 
 static GPoint position;
-static char world_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH];
+static char map_piece[VIEWPORT_HEIGHT][VIEWPORT_WIDTH];
 
 static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
   position = get_player_position();
@@ -9,8 +9,8 @@ static void up_click_handler(ClickRecognizerRef recognizer, void *context) {
   set_player_position(position);
   position.x -=2;
   position.y -=2;
-  give_world_piece(position, world_piece);
-  fill_viewport(world_piece);
+  give_map_piece(position, map_piece);
+  fill_viewport(map_piece);
 }
 
 static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -19,8 +19,8 @@ static void down_click_handler(ClickRecognizerRef recognizer, void *context) {
   set_player_position(position);
   position.x -=2;
   position.y -=2;
-  give_world_piece(position, world_piece);
-  fill_viewport(world_piece);
+  give_map_piece(position, map_piece);
+  fill_viewport(map_piece);
 }
 
 static void right_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -29,8 +29,8 @@ static void right_click_handler(ClickRecognizerRef recognizer, void *context) {
   set_player_position(position);
   position.x -=2;
   position.y -=2;
-  give_world_piece(position, world_piece);
-  fill_viewport(world_piece);
+  give_map_piece(position, map_piece);
+  fill_viewport(map_piece);
 }
 
 static void left_click_handler(ClickRecognizerRef recognizer, void *context) {
@@ -39,8 +39,8 @@ static void left_click_handler(ClickRecognizerRef recognizer, void *context) {
   set_player_position(position);
   position.x -=2;
   position.y -=2;
-  give_world_piece(position, world_piece);
-  fill_viewport(world_piece);
+  give_map_piece(position, map_piece);
+  fill_viewport(map_piece);
 }
 
 void click_config_provider(void *context) {
