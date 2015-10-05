@@ -23,16 +23,16 @@ void set_player_position(GPoint new_position) {
   old_position = player.position;
 
   // graphics stuff
-  char to_crush = get_map_at(new_position);
+  char to_crush = get_tile_at(new_position);
   if (to_crush != '#') {
     new_position.x = min(max(new_position.x, 0), MAP_WIDTH - 1);
     new_position.y = min(max(new_position.y, 0), MAP_HEIGHT - 1);
     if (to_crush == 'Z') {
       vibe_explosion();
     }
-    set_map_at(old_position, '.');
+    set_tile_at(old_position, '.');
     player.position = new_position;
-    set_map_at(player.position, '@');
+    set_tile_at(player.position, '@');
   }
 
   static char s_buffer[32];

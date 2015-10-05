@@ -36,11 +36,11 @@ void give_map_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_
   }
 }
 
-char get_map_at(GPoint position) {
+char get_tile_at(GPoint position) {
     return map[position.y][position.x];
 }
 
-void set_map_at(GPoint position, char tile) {
+void set_tile_at(GPoint position, char tile) {
     map[position.y][position.x] = tile;
 }
 

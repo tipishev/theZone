@@ -19,5 +19,5 @@ void load_map();
  * */
 void give_map_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_WIDTH]);
 
-char get_map_at(GPoint position); // TODO generalize with `give_map_piece`
-void set_map_at(GPoint position, char tile);
+char get_tile_at(GPoint position); // TODO generalize with `give_map_piece`
+void set_tile_at(GPoint position, char tile);
