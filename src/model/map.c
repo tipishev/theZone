@@ -44,17 +44,19 @@ void set_tile_at(GPoint position, char tile) {
     map[position.y][position.x] = tile;
 }
 
-/*void get_neighbors(GPoint tile, char destination[8]) {*/
-/*  [>destination[E] = (tile.x < MAP_EAST_EDGE) ? map[tile.y][tile.x + 1] : '~'; <]*/
-/*  [>destination[N] = (tile.y > MAP_NORTH_EDGE) ? map[tile.y - 1][tile.x] : '~'; <]*/
-/*  [>destination[W] = (tile.x > MAP_WEST_EDGE) ? map[tile.y][tile.x - 1] : '~'; <]*/
-/*  [>destination[S] = (tile.y < MAP_SOUTH_EDGE) ? map[tile.y + 1][tile.x] : '~'; <]*/
+void get_neighbors(GPoint tile, char destination[8]) {
+  // in a perfect world `~` is a null-pointer or something..
+  destination[E] = (tile.x < MAP_EAST_EDGE) ? map[tile.y][tile.x + 1] : '~';
+  destination[N] = (tile.y > MAP_NORTH_EDGE) ? map[tile.y - 1][tile.x] : '~';
+  destination[W] = (tile.x > MAP_WEST_EDGE) ? map[tile.y][tile.x - 1] : '~';
+  destination[S] = (tile.y < MAP_SOUTH_EDGE) ? map[tile.y + 1][tile.x] : '~';
 
-/*  [>destination[NE] = ((tile.x < MAP_EAST_EDGE) && (tile.y < map_NORTH_EDGE)) ? map[tile.y-1][tile.x + 1] : '~'; <]*/
-/*  [>destination[NW] = ((tile.x > MAP_WEST_EDGE) && (tile.y < map_NORTH_EDGE)) ? map[tile.y-1][tile.x - 1] : '~'; <]*/
-/*  [>destination[SW] = ((tile.x > MAP_WEST_EDGE) && (tile.y < map_NORTH_EDGE)) ? map[tile.y-1][tile.x - 1] : '~'; <]*/
-/*  [>destination[NE] = ((tile.x < MAP_EAST_EDGE) && (tile.y < map_NORTH_EDGE)) ? map[tile.y-1][tile.x + 1] : '~'; <]*/
-/*}*/
+  // FIXME find a way to use Direction enum for indices without going below 0
+  /*destination[NE] = ((tile.x < MAP_EAST_EDGE) && (tile.y < MAP_NORTH_EDGE)) ? map[tile.y-1][tile.x + 1] : '~';*/
+  /*destination[NW] = ((tile.x > MAP_WEST_EDGE) && (tile.y < MAP_NORTH_EDGE)) ? map[tile.y-1][tile.x - 1] : '~';*/
+  /*destination[SW] = ((tile.x > MAP_WEST_EDGE) && (tile.y < MAP_NORTH_EDGE)) ? map[tile.y-1][tile.x - 1] : '~';*/
+  /*destination[NE] = ((tile.x < MAP_EAST_EDGE) && (tile.y < MAP_NORTH_EDGE)) ? map[tile.y-1][tile.x + 1] : '~';*/
+}
 
 /*char get_available_directions() {*/
 /*  return '0';*/

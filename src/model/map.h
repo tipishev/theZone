@@ -2,10 +2,10 @@
 
 #include "player.h"
 
-#define MAP_EAST_EDGE map_WIDTH - 1
+#define MAP_EAST_EDGE MAP_WIDTH - 1
 #define MAP_NORTH_EDGE 0
 #define MAP_WEST_EDGE 0
-#define MAP_SOUTH_EDGE map_HEIGHT - 1
+#define MAP_SOUTH_EDGE MAP_HEIGHT - 1
 
 
 void load_map();
@@ -21,3 +21,4 @@ void give_map_piece(GPoint position, char destination[VIEWPORT_HEIGHT][VIEWPORT_
 
 char get_tile_at(GPoint position); // TODO generalize with `give_map_piece`
 void set_tile_at(GPoint position, char tile);
+void get_neighbors(GPoint tile, char destination[8]);
