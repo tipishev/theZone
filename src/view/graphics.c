@@ -11,7 +11,7 @@ static ActionBarLayer *s_action_bar;
 static GBitmap *s_icon_counterclockwise, *s_icon_clockwise, *s_icon_runner;
 static GBitmap *s_icon_previous_target, *s_icon_next_target, *s_icon_crosshair;
 enum  action_bar_mode {MOVE, ATTACK};  // FIXME
-enum action_bar_mode mode = MOVE;  // FIXME
+enum action_bar_mode mode = ATTACK;  // FIXME
 
 static TextLayer *s_status_text_layer;
 
@@ -165,6 +165,7 @@ void init_graphics(Window* window){
     create_action_bar(window);
     create_status_text(window);
     set_status_text("abcdefghijklmnopq");
+    switch_action_bar();
 }
 
 void deinit_graphics(){
