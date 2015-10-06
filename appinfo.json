@@ -13,6 +13,12 @@
     "media": [
       {
         "type": "png",
+        "name": "MENU_ICON_MAIN",
+        "file": "images/menu_icon_main.png",
+        "menuIcon": true
+      },
+      {
+        "type": "png",
         "name": "IMAGE_BACKGROUND_BOARD",
         "file": "images/background_board.png"
       },
