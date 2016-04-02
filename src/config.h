@@ -8,7 +8,8 @@ void window_set_fullscreen(Window * window, bool enabled);
 #define MAP_HEIGHT 16
 
 // View stuff
-#define TILE_SIZE 24
+#define MINIMAL_SPRITE_SIZE 8
+#define TILE_SIZE MINIMAL_SPRITE_SIZE*3
 #define VIEWPORT_WIDTH 5
 #define VIEWPORT_HEIGHT 6
 #define STATUS_TEXT_POSITION GRect(1, 153, 118, 166)

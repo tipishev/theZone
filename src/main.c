@@ -6,6 +6,14 @@
 
 static Window *s_main_window;
 
+void backlight_toggle(AccelAxisType _axis, int32_t _direction) {
+  static bool _backlight = false;
+  _backlight = !_backlight;
+  light_enable(_backlight);
+  vibes_long_pulse();
+}
+
+
 static void main_window_load(Window *window) {
   load_map();
   init_player();
@@ -27,10 +35,12 @@ static void init(void) {
     .unload = main_window_unload
   });
   window_stack_push(s_main_window, true);
+  accel_tap_service_subscribe(backlight_toggle);
 }
 
 static void deinit(void) {
   window_destroy(s_main_window);
+  accel_tap_service_unsubscribe();
 }
 
 int main(void) {
