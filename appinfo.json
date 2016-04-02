@@ -5,6 +5,8 @@
   "companyName": "Timofey Tipishev",
   "versionCode": 1,
   "versionLabel": "1.0",
+  "sdkVersion": "3",
+  "targetPlatforms": ["basalt"],
   "watchapp": {
     "watchface": false
   },
@@ -73,10 +75,5 @@
         "file": "images/tile_wall.png"
       }
     ]
-  },
-  "targetPlatforms": [
-    "aplite",
-    "basalt"
-  ],
-  "sdkVersion": "3"
+  }
 }
