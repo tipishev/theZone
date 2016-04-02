@@ -1,7 +1,7 @@
 #pragma once
 
 #include <pebble.h>
-#include "config.h"
+#include "game.h"
 #include "sprite.h"
 
 void init_graphics(Window* window);

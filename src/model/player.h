@@ -1,7 +1,7 @@
 #pragma once
 
 #include <pebble.h>
-#include "config.h"
+#include "game.h"
 #include "view/graphics.h"
 #include "view/vibe.h"
 #include "utils/math.h"

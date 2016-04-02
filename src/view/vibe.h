@@ -1,7 +1,7 @@
 #pragma once
 
 #include <pebble.h>
-#include "config.h"
+#include "game.h"
 
 void vibe_footsteps();
 void vibe_damage();

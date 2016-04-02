@@ -1,4 +1,5 @@
 #pragma once
+#include "pebble.h"
 
 // needs to be defined even with pebble.h included
 void window_set_fullscreen(Window * window, bool enabled);
