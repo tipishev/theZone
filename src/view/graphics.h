@@ -2,6 +2,7 @@
 
 #include <pebble.h>
 #include "config.h"
+#include "sprite.h"
 
 void init_graphics(Window* window);
 void deinit_graphics();
