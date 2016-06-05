@@ -1,4 +1,5 @@
 #include "pebble.h"
+#include "pge/pge.h"
 
 #include "control/controls.h"
 #include "view/graphics.h"
